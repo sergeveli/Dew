@@ -52,7 +52,6 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-
 const initialState = { user: null };
 
 function reducer(state = initialState, action) {
