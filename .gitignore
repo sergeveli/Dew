@@ -1,3 +1,4 @@
-authenticate-me-send/part-1-backend.md
-authenticate-me-send/part-2-frontend.md
-authenticate-me-send/part-3-deploy.md
+node_modules
+.env
+build
+.DS_Store
