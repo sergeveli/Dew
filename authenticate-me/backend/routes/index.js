@@ -36,9 +36,9 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-router.get('/hello/world', function(req, res) {
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  res.send('Look Mom, I Can Fly!');
-});
+// router.get('/hello/world', function(req, res) {
+//   res.cookie('XSRF-TOKEN', req.csrfToken());
+//   res.send('Look Mom, I Can Fly!');
+// });
 
 module.exports = router;
