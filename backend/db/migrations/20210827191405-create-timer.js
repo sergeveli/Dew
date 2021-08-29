@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       taskId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: 'Tasks', key: 'id'}
       },
       time: {
         type: Sequelize.INTEGER
