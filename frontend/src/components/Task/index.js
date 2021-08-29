@@ -1,17 +1,16 @@
 import { set } from 'js-cookie'
 import React, {useEffect, useState} from 'react'
-import  { useSelector, useDispatch } from 'react-redux'
+
 import { useParams } from 'react-router-dom'
 // import {getSingleBusiness, addSingleReview, deleteReview, deleteSingleBusiness} from '../../store/businessReducer'
-import './businessPage.css'
+import './task.css'
 // import ReviewEditForm from '../ReviewEditForm'
 
 
-const BusinessPage = () =>{
-const dispatch = useDispatch();
-const { businessId } = useParams();
+const TaskComponent = () =>{
 
-const business = useSelector(state => state.business.singleBusiness);
+const { taskId } = useParams();
+
 const [rating, setRating] = useState('')
 const [answer, setAnswer] = useState('')
 const [editingReview, setEditingReview] = useState(null)
@@ -20,7 +19,6 @@ const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('i')
     const reviewObj = { userId: 1, businessId: +businessId, rating: +rating, answer };
-    dispatch(addSingleReview(reviewObj))
 }
 
 const didClickEditReview = (event, review)=>{
@@ -34,20 +32,8 @@ const stopEditingReview = () =>{
 
 const didClickDeleteReview = (event, review)=>{
     event.preventDefault()
-    dispatch(deleteReview(review))
-}
 
-const deleteBusiness = (event) => {
-  event.preventDefault()
-  if ( window.confirm('Really delete gym?')) {
-    dispatch(deleteSingleBusiness(businessId))
-    window.location.href = '/'
-  }
 }
-
-useEffect(()=> {
-     dispatch(getSingleBusiness(businessId)) 
- },[dispatch])
 
     return (
     <div className='review_container'>
