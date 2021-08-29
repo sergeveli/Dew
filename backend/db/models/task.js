@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Task.associate = function(models) {
     Task.belongsTo(models.User, {foreignKey: 'userId'})
+    Task.hasOne(models.Timer, {foreignKey: 'taskId'})
   };
   return Task;
 };

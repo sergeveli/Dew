@@ -34,7 +34,7 @@ router.get('/:id/tasks',
     asyncHandler(
         async (req, res) => {
             userId = req.params.id
-            const Tasks = await Task.findAll(
+            const tasks = await Task.findAll(
                 {include: 
               {
                 model: Timer
