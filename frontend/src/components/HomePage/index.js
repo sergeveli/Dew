@@ -72,7 +72,7 @@ function HomePage(){
                 />
                 <button type='submit'>Save</button>
             </form>}
-            {taskList.map((task) => (
+            {taskList.map((task) => (  ///add a key prop (typically id) to each one
                 <div>
                     {task.title}
                     <button type='submit' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
