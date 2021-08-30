@@ -108,4 +108,4 @@ const TaskComponent = (task) =>{
 }
 
 
-export default BusinessPage;
+export default TaskComponent;
