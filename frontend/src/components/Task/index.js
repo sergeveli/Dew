@@ -7,33 +7,43 @@ import './task.css'
 // import ReviewEditForm from '../ReviewEditForm'
 
 
-const TaskComponent = () =>{
+const TaskComponent = (task) =>{
 
-const { taskId } = useParams();
+// const { taskId } = useParams();
 
-const [rating, setRating] = useState('')
-const [answer, setAnswer] = useState('')
-const [editingReview, setEditingReview] = useState(null)
+// const [title, setTitle] = useState('')
+// const [description, setDescription] = useState('')
+// const [completed, setCompleted] = useState(null)
+// const [reps, setReps] = useState('')
+// const [taskDate, setTaskDate] = useState(null)
+// const [editTask, setEditTask] = useState(null)
 
-const handleSubmit = async(e) => {
-    e.preventDefault()
-    console.log('i')
-    const reviewObj = { userId: 1, businessId: +businessId, rating: +rating, answer };
-}
+// const handleSubmit = async(e) => {
+//     e.preventDefault()
+//     console.log('i')
+// }
 
-const didClickEditReview = (event, review)=>{
-    event.preventDefault()
-    setEditingReview(review)
-}
+// const didClickEditTask = (event, task)=>{
+//     event.preventDefault()
+//     setEditTask(task)
+// }
 
-const stopEditingReview = () =>{
-    setEditingReview(null)
-}
+// const stopEditingReview = () =>{
+//     setEditingReview(null)
+// }
 
-const didClickDeleteReview = (event, review)=>{
-    event.preventDefault()
+// const didClickDeleteTask = (event, task)=>{
+//     event.preventDefault()
 
-}
+// }
+
+// const deleteTask = (event) => {
+//   event.preventDefault()
+//   if (window.confirm('Really delete gym?')) {
+//     // dispatch(deleteSingleBusiness(businessId))
+//     // window.location.href = '/'
+//   }
+// }
 
     return (
     <div className='review_container'>
