@@ -44,19 +44,23 @@ router.get('/:id/tasks',
 );
 
 //(U)EDITING A TASK,
-router.put('/:id/tasks/:taskId',
+router.put('/:taskId',
     asyncHandler(
         async(req, res) => {
+            const inputTask = req.params.task
             taskId = req.params.taskId
             title = req.body.title
             description = req.body.description
+            completed = req.body.completed
+            reps = req.body.reps
+            taskDate = req.body.reps
             const task = await Task.findByPk(taskId)
             await task.update({title, description, completed, reps, taskDate})
             return res.json('')                              
 }))
 
 //(D)DELETE TASK
-router.delete('/:id/tasks/:taskId',
+router.delete('/:taskId',
         asyncHandler(
             async (req, res) => {
             taskId = req.params.taskId

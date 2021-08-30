@@ -27,11 +27,11 @@ export const getSingleTask = async(taskId) => {
 }
 
 //(U)
-export const editSingleTask= async(taskId) => {
-    const response = await csrfFetch(`/api/task/${taskId}`,{
+export const editSingleTask= async(task) => {
+    const response = await csrfFetch(`/api/task/${task.id}`,{
         method: 'PUT',
         headers:{'Content-Type' : 'application/json'},
-        body: JSON.stringify(taskId)
+        body: JSON.stringify(task)
     })
     if(response.ok){
         return response.json()
