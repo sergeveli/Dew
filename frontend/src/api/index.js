@@ -1,52 +1,52 @@
-// import csrfFetch from "./csrf"
+import csrfFetch from "./csrf"
 
 //(C)
-export const addTask = (task) => {
-        const response = await fetch(`api/task/new`,{
+export const addTask = async(task) => {
+        const response = await csrfFetch(`api/task/new`,{
             method: 'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({...task, userId: 1})})
         if(response.ok){
-            return response
+            return response.json()
         }
 }
 //(R)
-export const getAllTasks = (userId) =>{
-    const response = await fetch(`/api/users/${userId}/tasks/`)
+export const getAllTasks = async(userId) =>{
+    const response = await csrfFetch(`/api/users/${userId}/tasks/`)
     if(response.ok){
-        return response
+        return response.json()
     }
 }
 
 
-export const getSingleTask = (taskId) => {
-    const response = await fetch(`/api/task/${taskId}`)
+export const getSingleTask = async(taskId) => {
+    const response = await csrfFetch(`/api/task/${taskId}`)
     if(response.ok){
-        return response
+        return response.json()
     }
 }
 
 //(U)
-export const editSingleTask= (taskId) => {
-    const response = await fetch(`/api/task/${taskId}`,{
+export const editSingleTask= async(taskId) => {
+    const response = await csrfFetch(`/api/task/${taskId}`,{
         method: 'PUT',
         headers:{'Content-Type' : 'application/json'},
         body: JSON.stringify(taskId)
     })
     if(response.ok){
-        return response
+        return response.json()
     }
 }
 
 
 //(D)
-export const deleteSingleTask = (taskId)=>{
-    const response = await fetch(`/api/task/${taskId}`, {
+export const deleteSingleTask = async(taskId)=>{
+    const response = await csrfFetch(`/api/task/${taskId}`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
     })
     if (response.ok){
-      return response
+      return response.json()
     }
 }
 
