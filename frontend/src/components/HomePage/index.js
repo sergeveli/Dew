@@ -10,7 +10,7 @@ function HomePage(){
     
 
     const loadTasks = async () => {
-        const tasks = await getAllTasks(1)
+        const tasks = await getAllTasks(1) //TO DO: CONNECT THIS TO AUTHORIZED USER
         setTaskList(tasks)
     }
     
