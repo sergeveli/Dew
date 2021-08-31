@@ -61,7 +61,7 @@ function HomePage(){
 
     return (
         <div class='list'>
-            'What are we doing?'
+            <h1>'What's Next?'</h1>
             <button class='btn' onClick={handleNewButton}> New Task </button>
             {showForm &&
             <form onSubmit={formSubmit}>
@@ -76,8 +76,8 @@ function HomePage(){
             {taskList.map((task) => (
                 <div>
                     {task.title}
-                    <button type='submit' class='btn2' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
-                    <button type='submit' class='btn2' onClick={()=>startEdit(task)}>Edit</button>
+                    <button type='submit' class='btn' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
+                    <button type='submit' class='btn' onClick={()=>startEdit(task)}>Edit</button>
                 </div>
             ))}
         </div>
