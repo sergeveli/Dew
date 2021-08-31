@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-
+//////////////style it across the top of the page and dont forget AboutMe links
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
