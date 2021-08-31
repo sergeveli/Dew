@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks } from '../../api';
+import "./HomePage.css"
 
 function HomePage(){
     const [showForm, setShowForm] = useState(false)
@@ -59,9 +60,9 @@ function HomePage(){
     }
 
     return (
-        <div>
+        <div class='list'>
             'What are we doing?'
-            <button onClick={handleNewButton}> New Task </button>
+            <button class='btn' onClick={handleNewButton}> New Task </button>
             {showForm &&
             <form onSubmit={formSubmit}>
                 <input
@@ -70,13 +71,13 @@ function HomePage(){
                 onChange={(e)=> titleDidChange(e.target.value)}
                 required
                 />
-                <button type='submit'>Save</button>
+                <button class='btn' type='submit'>Save</button>
             </form>}
             {taskList.map((task) => (
                 <div>
                     {task.title}
-                    <button type='submit' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
-                    <button type='submit' onClick={()=>startEdit(task)}>Edit</button>
+                    <button type='submit' class='btn2' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
+                    <button type='submit' class='btn2' onClick={()=>startEdit(task)}>Edit</button>
                 </div>
             ))}
         </div>
