@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     static associate(models) {
       User.hasMany(models.Task, {foreignKey: 'userId'})
+      User.hasMany(models.Groups, {foreignKey: 'userId'})
     }
   };
   User.init(
