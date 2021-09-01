@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Group.associate = function(models) {
-    Group.hasMany(models.Tasks, {foreignKey: 'taskId'})
-    Group.belongsTo(models.Users, {foreignKey: 'userId'})
+    Group.hasMany(models.Task, {foreignKey: 'taskId'})
+    Group.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return Group;
 };
