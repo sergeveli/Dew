@@ -5,7 +5,7 @@ const router = express.Router();
 
 const asyncHandler = require('express-async-handler');
 
-const { Group, User, Task } = require('../../db/models');
+const { Group, Task } = require('../../db/models');
 
 //(C)CREATE A NEW GROUP 
 router.post('/new',
@@ -26,7 +26,7 @@ router.post('/new',
 router.get('/:id/groups',
     asyncHandler(
         async (req, res) => {
-            userId = req.params.id
+            userId = req.params.userId
             const groups = await Group.findAll(
                 {include: 
               {
@@ -40,10 +40,11 @@ router.get('/:id/groups',
 router.put('/:groupId',
     asyncHandler(
         async(req, res) => {
-            const inputGroup = req.params.task
+            const inputGroup = req.params.group
+            groupId = req.params.groupId
             taskId = req.params.taskId
             const group = await Group.findByPk(groupId)
-            await task.update({taskId})
+            await group.update({groupId})
             return res.json('')                              
 }))
 
