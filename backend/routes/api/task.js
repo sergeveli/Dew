@@ -1,14 +1,16 @@
 const { Router } = require('express');
 const express = require('express');
+const {check} = require('express-validation');
+const {handleValidationErrors} = require('../../utils/validation')
 const expressAsyncHandler = require('express-async-handler');
 const router = express.Router();
-
 const asyncHandler = require('express-async-handler');
-
+const {restoreUser, requireAuth} = require('../../utils/auth')
 const { Task, Timer } = require('../../db/models');
 
 //(C)CREATE A NEW TASK 
 router.post('/new',
+    requireAuth,
     asyncHandler(
         async (req, res) => {
                 userId = req.body.userId 
@@ -31,6 +33,7 @@ router.post('/new',
 
 //(R)FETCH ALL TASKS
 router.get('/:id/tasks',
+    requireAuth,
     asyncHandler(
         async (req, res) => {
             userId = req.params.id
@@ -45,6 +48,7 @@ router.get('/:id/tasks',
 
 //(U)EDITING A TASK,
 router.put('/:taskId',
+    requireAuth,
     asyncHandler(
         async(req, res) => {
             const inputTask = req.params.task
@@ -60,13 +64,15 @@ router.put('/:taskId',
 }))
 
 //(D)DELETE TASK
-router.delete('/:taskId',
-        asyncHandler(
-            async (req, res) => {
-            taskId = req.params.taskId
-                const task = await Task.findByPk(taskId)
-                await task.destroy(); 
-                    return await res.json('Finito');
+router.delete(
+    '/:taskId',
+    requireAuth,
+    asyncHandler(
+        async (req, res) => {
+        taskId = req.params.taskId
+            const task = await Task.findByPk(taskId)
+            await task.destroy(); 
+                return await res.json('Finito');
         })
     )
 
