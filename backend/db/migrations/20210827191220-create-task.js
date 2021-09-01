@@ -20,6 +20,11 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      groupId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: 'Groups'}
+      },
       completed: {
         type: Sequelize.BOOLEAN
       },
