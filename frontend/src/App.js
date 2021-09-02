@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import SplashPage from "./components/SplashPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -25,12 +27,36 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/'>
+          <PrivateRoute path='/home'>
             <HomePage />
+          </PrivateRoute>
+          <Route path ='/'>
+            <SplashPage />
           </Route>
         </Switch>
       )}
     </>
+  );
+}
+
+function PrivateRoute({ children, ...rest }) {
+  const user = useSelector(state => state.session.user);
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
   );
 }
 
