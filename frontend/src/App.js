@@ -10,6 +10,7 @@ import SplashPage from "./components/SplashPage";
 
 
 function App() {
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -30,8 +31,11 @@ function App() {
           <PrivateRoute path='/home'>
             <HomePage />
           </PrivateRoute>
-          <Route path ='/'>
+          <Route path='/'>
+            {user ?
+            <Redirect to={{pathname: "/home"}}/> :
             <SplashPage />
+            }
           </Route>
         </Switch>
       )}
@@ -50,7 +54,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: "/",
               state: { from: location }
             }}
           />
