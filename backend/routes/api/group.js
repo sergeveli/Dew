@@ -40,11 +40,10 @@ router.get('/:id/groups',
 router.put('/:groupId',
     asyncHandler(
         async(req, res) => {
-            const inputGroup = req.params.group
             groupId = req.params.groupId
-            taskId = req.params.taskId
+            name = req.body.name
             const group = await Group.findByPk(groupId)
-            await group.update({groupId})
+            await group.update({name})
             return res.json('')                              
 }))
 
@@ -52,7 +51,7 @@ router.put('/:groupId',
 router.delete('/:groupId',
         asyncHandler(
             async (req, res) => {
-            groupId = req.params.taskId
+            groupId = req.params.groupId
                 const group = await Group.findByPk(groupId)
                 await group.destroy(); 
                     return await res.json('Finito');
