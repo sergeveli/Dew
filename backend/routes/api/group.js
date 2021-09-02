@@ -12,13 +12,12 @@ const { Group, Task } = require('../../db/models');
 router.post('/new',
     asyncHandler(
         async (req, res) => {
-
+                name = req.body.name
                 userId = req.body.userId
-                taskId = req.body.taskId  
 
-            const newGroup = await Group.create({ 
+            const newGroup = await Group.create({
+                name, 
                 userId,
-                taskId
             })
             return await res.json({})
     }))
