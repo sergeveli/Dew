@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Timer, Task } = require('../../db/models');
+const { User, Timer, Task, Group } = require('../../db/models');
 
 const router = express.Router();
 
@@ -55,6 +55,19 @@ router.get('/:id/tasks',
                 model: Timer
               }});
             return await res.json(tasks);
+    })
+);
+//(R) FETCH ALL GROUPS
+router.get('/:id/groups',
+    asyncHandler(
+        async (req, res) => {
+            userId = req.params.userId
+            const groups = await Group.findAll(
+                {include: 
+              {
+                model: Task
+              }});
+            return await res.json(groups);
     })
 );
 
