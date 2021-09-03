@@ -59,7 +59,7 @@ export const addGroup = async(group) => {
         const response = await csrfFetch(`api/group/new`,{
             method: 'POST',
             headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({...group, userId: 1})})
+            body: JSON.stringify({...group, userId: 1})}) //
         if(response.ok){
             return response.json()
         }

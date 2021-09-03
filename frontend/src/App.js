@@ -29,7 +29,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <PrivateRoute path='/home'>
-            <HomePage />
+            <HomePage user={user}/>
           </PrivateRoute>
           <Route path='/'>
             {user ?

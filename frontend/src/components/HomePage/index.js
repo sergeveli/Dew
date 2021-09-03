@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSelector } from 'react';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
 
-function HomePage(){
+function HomePage(props){
+    const user = props.user
     const [showForm, setShowForm] = useState(false)
     const [inputValue, setInputValue] = useState('')
     const [taskList, setTaskList] = useState([])
@@ -14,9 +15,10 @@ function HomePage(){
     const [editingGroup, setEditingGroup] = useState(null)
     const [isEditingGroup, setIsEditingGroup] = useState(false)
     
+    
 
     const loadTasks = async () => {
-        const tasks = await getAllTasks(1) //TO DO: CONNECT THIS TO AUTHORIZED USER
+        const tasks = await getAllTasks(user.id) //TO DO: CONNECT THIS TO AUTHORIZED USER
         setTaskList(tasks)
     }
     
@@ -65,8 +67,9 @@ function HomePage(){
     }
 
 
+
     const loadGroups = async () => {
-        const groups = await getAllGroups(1) //TO DO: CONNECT THIS TO AUTHORIZED USER
+        const groups = await getAllGroups(user) //TO DO: CONNECT THIS TO AUTHORIZED USER
         setGroupList(groups)
     }
 
@@ -114,9 +117,9 @@ function HomePage(){
         }
     }
     return (
-        <div class='list'>
+        <div className='list'>
             <h1>'What's Next?'</h1>
-            <button class='btn' onClick={handleNewButton}> New Task </button>
+            <button className='btn' onClick={handleNewButton}> New Task </button>
             {showForm &&
             <form onSubmit={formSubmit}>
                 <input
@@ -125,13 +128,13 @@ function HomePage(){
                 onChange={(e)=> titleDidChange(e.target.value)}
                 required
                 />
-                <button class='btn' type='submit'>Save</button>
+                <button className='btn' type='submit'>Save</button>
             </form>}
             {taskList.map((task) => (  ///add a key prop (typically id) to each one
                 <div key={task.id}>
                     {task.title}
-                    <button type='submit' class='btn' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
-                    <button type='submit' class='btn' onClick={()=>startEdit(task)}>Edit</button>
+                    <button type='submit' className='btn' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
+                    <button type='submit' className='btn' onClick={()=>startEdit(task)}>Edit</button>
                 </div>
             ))}
         </div>
