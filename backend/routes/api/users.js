@@ -50,7 +50,8 @@ router.get('/:id/tasks',
         async (req, res) => {
             userId = req.params.id
             const tasks = await Task.findAll(
-                {include: 
+                { where: {userId},
+                  include: 
               {
                 model: Timer
               }});
@@ -61,10 +62,11 @@ router.get('/:id/tasks',
 router.get('/:id/groups',
     asyncHandler(
         async (req, res) => {
-            userId = req.params.userId
+            userId = req.params.id
             const groups = await Group.findAll(
-                {include: {userId},
-                model: Task
+                {where: {userId},
+                include:
+                {model: Task}
               });
             return await res.json(groups);
     })

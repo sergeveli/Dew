@@ -15,6 +15,7 @@ router.post('/new',
         async (req, res) => {
                 userId = req.body.userId 
                 title = req.body.title 
+                groupId = req.body.groupId
                 description = req.body.description
                 completed = req.body.completed
                 reps = req.body.reps
@@ -23,6 +24,7 @@ router.post('/new',
             const newTask = await Task.create({ 
                 userId, 
                 title, 
+                groupId,
                 description,
                 completed,
                 reps,

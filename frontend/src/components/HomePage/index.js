@@ -10,12 +10,14 @@ function HomePage(props){
     const [taskList, setTaskList] = useState([])
     const [isEditing, setIsEditing] = useState(false)
     const [editingTask, setEditingTask] = useState(null)
+    const [isGroupId, setIsGroupId] = useState(null)
 
     const [showGroupForm, setShowGroupForm] = useState(false)
     const [groupList, setGroupList] = useState([])
     const [editingGroup, setEditingGroup] = useState(null)
     const [isEditingGroup, setIsEditingGroup] = useState(false)
     const [groupInputValue, setGroupInputValue] = useState('')
+
     
     
 
@@ -105,6 +107,15 @@ function HomePage(props){
         loadGroups()
     }
 
+
+    const groupDidChange = async (groupId) =>{
+        if(isEditing){
+            setEditingTask({...editingTask, groupId})
+        } else {
+            setGroupInputValue(groupId)
+        }
+    }
+
     const groupTitleDidChange = async (name) =>{
         if(isEditingGroup){
             setEditingGroup({...editingGroup, name})
@@ -120,6 +131,10 @@ function HomePage(props){
             {showForm &&
             <Modal onClose={() => setShowForm(false)}>
             <form onSubmit={formSubmit}>
+            <select onChange={(e)=> groupDidChange(e.target.value)} name="groups">
+                <option value={null}>No Group</option>
+                {groupList.map((group)=>(<option selected={isEditing && editingTask.groupId === group.id} value={group.id}>{group.name}</option>))}
+            </select>
                 <input
                 type='text'
                 value={isEditing ? editingTask.title : inputValue}
@@ -137,7 +152,7 @@ function HomePage(props){
                 <input
                 type='text'
                 value={isEditingGroup ? editingGroup.name : groupInputValue}
-                onChange={(e)=> groupTitleDidChange(e.target.value)}
+                onChange={(e)=> groupDidChange(e.target.value)}
                 required
                 />
                 <button className='btn' type='submit'>Save</button>
