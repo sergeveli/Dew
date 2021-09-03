@@ -17,12 +17,12 @@ function HomePage(props){
     const [editingGroup, setEditingGroup] = useState(null)
     const [isEditingGroup, setIsEditingGroup] = useState(false)
     const [groupInputValue, setGroupInputValue] = useState('')
-    const [selectedGroup, setSelectedGroup] = useState(null)
+    const [selectedGroupId, setSelectedGroupId] = useState(null)
 
     
     const getTaskList = () => {
-        if(selectedGroup){
-            return taskList.filter((task) => task.groupId === selectedGroup.id)
+        if(selectedGroupId){
+            return taskList.filter((task) => task.groupId === selectedGroupId)
         }
         else return taskList
     }
@@ -87,33 +87,33 @@ function HomePage(props){
     const newGroupButton = () =>{
         setShowGroupForm(true)
         setIsEditingGroup(false)
+        setEditingGroup(null)
     }
     
     const handleGroupDeleteButton = async(groupId) => {
         await deleteSingleGroup(groupId)
-        loadGroups()
+        await loadGroups()
+        setSelectedGroupId(null)
     }
 
-    const handleGroupEditButton = async(group) =>{
-        setEditingGroup(group)
-        setShowGroupForm(true)
+    const groupById = (groupId) => {
+        return groupList.find(group => group.id === groupId) || null
     }
 
-    const startGroupEdit = (group) =>{
-        setEditingGroup(group)
+    const startGroupEdit = (groupId) =>{
+        setEditingGroup(groupById(groupId))
         setIsEditingGroup(true)
         setShowGroupForm(true)
     }
 
-    const groupFormSubmit = async (group) =>{
+    const groupFormSubmit = async () =>{
         setShowGroupForm(false)
         if(isEditingGroup){
             await editSingleGroup(editingGroup)
         } else {
-            await addGroup({name:inputValue})
+            await addGroup({name:groupInputValue})
         }
-
-        loadGroups()
+        await loadGroups()
     }
 
 
@@ -134,10 +134,15 @@ function HomePage(props){
     }
 
     const didSelectGroupId = (groupId) =>{
-        console.log(groupId)
-        const group = groupList.find((group)=>group.id === parseInt(groupId))
-        console.log('------>', group)
-        setSelectedGroup(group)
+        setSelectedGroupId(groupId)
+    }
+
+    const selectedGroup = () => {
+        if (selectedGroupId) {
+            return groupById(selectedGroupId)
+        } else {
+            return null
+        }
     }
 
 
@@ -150,25 +155,25 @@ function HomePage(props){
             <button className='btn' onClick={newGroupButton}> New Group </button>
 
             <div className='header'>
-                {selectedGroup && <h1 style={{display: 'inline-block'}}>{selectedGroup.name}</h1>}
+                {!!selectedGroup() && <h1 style={{display: 'inline-block'}}>{selectedGroup().name}</h1>}
 
                 <select 
-                    onChange={(e)=>didSelectGroupId(e.target.value)} 
+                    onChange={(e)=>didSelectGroupId(parseInt(e.target.value))} 
                     name='grouplist'>
                     <option value=''>All</option>
                     {groupList.map((group)=>(
                     <option 
                     key = {group.id}
-                    selected={selectedGroup && selectedGroup.id === group.id} 
+                    selected={selectedGroupId === group.id} 
                     value={group.id}>{group.name}
                     </option>
                     ))}
                 </select>
 
-                {selectedGroup && (
+                {!!selectedGroup() && (
                     <div>
-                        <button type='submit' onClick={()=>startGroupEdit(selectedGroup.id)}>Edit</button>
-                        <button type='submit' onClick={()=>handleGroupDeleteButton(selectedGroup.id)}>Delete</button>
+                        <button type='submit' onClick={()=>startGroupEdit(selectedGroupId)}>Edit</button>
+                        <button type='submit' onClick={()=>handleGroupDeleteButton(selectedGroupId)}>Delete</button>
                     </div>
                 )}
             </div>
@@ -198,13 +203,14 @@ function HomePage(props){
                 <button className='btn' type='submit'>Save</button>
             </form>
             </Modal>}
+
             {showGroupForm &&
             <Modal onClose={() => setShowGroupForm(false)}>
             <form onSubmit={groupFormSubmit}>
                 <input
                 type='text'
                 value={isEditingGroup ? editingGroup.name : groupInputValue}
-                onChange={(e)=> groupDidChange(e.target.value)}
+                onChange={(e)=> groupTitleDidChange(e.target.value)}
                 required
                 />
                 <button className='btn' type='submit'>Save</button>
