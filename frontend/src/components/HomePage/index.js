@@ -23,6 +23,11 @@ function HomePage(props){
         const tasks = await getAllTasks(user.id) //TO DO: CONNECT THIS TO AUTHORIZED USER
         setTaskList(tasks)
     }
+
+    const loadGroups = async () => {
+        const groups = await getAllGroups(user.id)
+        setGroupList(groups)
+    }
     
     useEffect(async ()=>{
         loadTasks()
@@ -67,17 +72,6 @@ function HomePage(props){
             setInputValue(title)
         }
     }
-
-
-
-    const loadGroups = async () => {
-        const groups = await getAllGroups(user)
-        setGroupList(groups)
-    }
-
-    useEffect(async ()=>{
-        loadGroups()
-    }, [])
 
     const newGroupButton = () =>{
         setShowGroupForm(true)
