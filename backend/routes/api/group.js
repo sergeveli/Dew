@@ -22,19 +22,19 @@ router.post('/new',
             return await res.json({})
     }))
 
-//(R)FETCH ALL GROUPS
-router.get('/:id/groups',
-    asyncHandler(
-        async (req, res) => {
-            userId = req.params.userId
-            const groups = await Group.findAll(
-                {include: 
-              {
-                model: Task
-              }});
-            return await res.json(groups);
-    })
-);
+// //(R)FETCH ALL GROUPS
+// router.get('/:id/groups',
+//     asyncHandler(
+//         async (req, res) => {
+//             userId = req.params.userId
+//             const groups = await Group.findAll(
+//                 {include: 
+//               {
+//                 model: Task
+//               }});
+//             return await res.json(groups);
+//     })
+// );
 
 //(U)EDITING A GROUP,
 router.put('/:groupId',

@@ -66,7 +66,7 @@ export const addGroup = async(group) => {
 }
 //(R)
 export const getAllGroups = async(userId) =>{
-    const response = await csrfFetch(`/api/${userId}/groups/`)
+    const response = await csrfFetch(`/api/users/${userId}/groups`)
     if(response.ok){
         return response.json()
     }
