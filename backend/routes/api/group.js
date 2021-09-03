@@ -56,10 +56,11 @@ router.delete('/:groupId',
                     {include:
                 {model: Task}
                 })
-                console.log(group)
+                if(group){
                 await Promise.all(group.Tasks.map((task)=>task.update({groupId: null})))
                 await group.destroy(); 
                     return await res.json('Finito');
+                }
         })
     )
 
