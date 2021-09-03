@@ -52,9 +52,15 @@ router.delete('/:groupId',
         asyncHandler(
             async (req, res) => {
             groupId = req.params.groupId
-                const group = await Group.findByPk(groupId)
+                const group = await Group.findByPk(groupId, 
+                    {include:
+                {model: Task}
+                })
+                if(group){
+                await Promise.all(group.Tasks.map((task)=>task.update({groupId: null})))
                 await group.destroy(); 
                     return await res.json('Finito');
+                }
         })
     )
 
