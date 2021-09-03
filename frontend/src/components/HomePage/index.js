@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addTask, deleteSingleTask, editSingleTask, getAllTasks } from '../../api';
+import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
 
 function HomePage(){
@@ -8,6 +8,11 @@ function HomePage(){
     const [taskList, setTaskList] = useState([])
     const [isEditing, setIsEditing] = useState(false)
     const [editingTask, setEditingTask] = useState(null)
+
+    const [showGroupForm, setShowGroupForm] = useState(false)
+    const [groupList, setGroupList] = useState([])
+    const [editingGroup, setEditingGroup] = useState(null)
+    const [isEditingGroup, setIsEditingGroup] = useState(false)
     
 
     const loadTasks = async () => {
@@ -59,6 +64,55 @@ function HomePage(){
         }
     }
 
+
+    const loadGroups = async () => {
+        const groups = await getAllGroups(1) //TO DO: CONNECT THIS TO AUTHORIZED USER
+        setGroupList(groups)
+    }
+
+    useEffect(async ()=>{
+        loadGroups()
+    }, [])
+
+    const newGroupButton = () =>{
+        setShowGroupForm(true)
+        setIsEditingGroup(false)
+    }
+    
+    const handleGroupDeleteButton = async(groupId) => {
+        await deleteSingleGroup(groupId)
+        loadGroups()
+    }
+
+    const handleGroupEditButton = async(group) =>{
+        setEditingGroup(group)
+        setShowGroupForm(true)
+    }
+
+    const startGroupEdit = (group) =>{
+        setEditingGroup(group)
+        setIsEditingGroup(true)
+        setShowGroupForm(true)
+    }
+
+    const groupFormSubmit = async (group) =>{
+        setShowGroupForm(false)
+        if(isEditingGroup){
+            await editSingleGroup(editingGroup)
+        } else {
+            await addGroup({name:inputValue})
+        }
+
+        loadGroups()
+    }
+
+    const groupTitleDidChange = async (group) =>{
+        if(isEditingGroup){
+            setEditingGroup({...editingGroup, title})
+        } else {
+            setInputValue(title)
+        }
+    }
     return (
         <div class='list'>
             <h1>'What's Next?'</h1>
