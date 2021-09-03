@@ -63,10 +63,9 @@ router.get('/:id/groups',
         async (req, res) => {
             userId = req.params.userId
             const groups = await Group.findAll(
-                {include: 
-              {
+                {include: {userId},
                 model: Task
-              }});
+              });
             return await res.json(groups);
     })
 );

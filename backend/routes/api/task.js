@@ -38,10 +38,10 @@ router.get('/:id/tasks',
         async (req, res) => {
             userId = req.params.id
             const tasks = await Task.findAll(
-                {include: 
-              {
-                model: Timer
-              }});
+                {
+                    where: {userId},
+                    model: Timer
+              });
             return await res.json(tasks);
     })
 );
