@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useSelector } from 'react';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
+import { Modal } from '../../context/Modal';
 
 function HomePage(props){
     const user = props.user
@@ -14,6 +15,7 @@ function HomePage(props){
     const [groupList, setGroupList] = useState([])
     const [editingGroup, setEditingGroup] = useState(null)
     const [isEditingGroup, setIsEditingGroup] = useState(false)
+    const [groupInputValue, setGroupInputValue] = useState('')
     
     
 
@@ -69,7 +71,7 @@ function HomePage(props){
 
 
     const loadGroups = async () => {
-        const groups = await getAllGroups(user) //TO DO: CONNECT THIS TO AUTHORIZED USER
+        const groups = await getAllGroups(user)
         setGroupList(groups)
     }
 
@@ -109,18 +111,20 @@ function HomePage(props){
         loadGroups()
     }
 
-    const groupTitleDidChange = async (group) =>{
+    const groupTitleDidChange = async (name) =>{
         if(isEditingGroup){
-            setEditingGroup({...editingGroup, group})
+            setEditingGroup({...editingGroup, name})
         } else {
-            setInputValue(group.name)
+            setGroupInputValue(name)
         }
     }
     return (
         <div className='list'>
             <h1>'What's Next?'</h1>
+
             <button className='btn' onClick={handleNewButton}> New Task </button>
             {showForm &&
+            <Modal onClose={() => setShowForm(false)}>
             <form onSubmit={formSubmit}>
                 <input
                 type='text'
@@ -129,8 +133,25 @@ function HomePage(props){
                 required
                 />
                 <button className='btn' type='submit'>Save</button>
-            </form>}
-            {taskList.map((task) => (  ///add a key prop (typically id) to each one
+            </form>
+            </Modal>}
+
+            <button className='btn' onClick={newGroupButton}> New Group </button>
+            {showGroupForm &&
+            <Modal onClose={() => setShowGroupForm(false)}>
+            <form onSubmit={groupFormSubmit}>
+                <input
+                type='text'
+                value={isEditingGroup ? editingGroup.name : groupInputValue}
+                onChange={(e)=> groupTitleDidChange(e.target.value)}
+                required
+                />
+                <button className='btn' type='submit'>Save</button>
+            </form>
+            </Modal>}
+
+
+            {taskList.map((task) => (  
                 <div key={task.id}>
                     {task.title}
                     <button type='submit' className='btn' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
