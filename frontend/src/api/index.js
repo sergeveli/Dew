@@ -50,6 +50,59 @@ export const deleteSingleTask = async(taskId)=>{
     }
 }
 
+
+
+
+////////////
+//(C)
+export const addGroup = async(group) => {
+        const response = await csrfFetch(`api/group/new`,{
+            method: 'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({...group, userId: 1})})
+        if(response.ok){
+            return response.json()
+        }
+}
+//(R)
+export const getAllGroups = async(userId) =>{
+    const response = await csrfFetch(`/api/${userId}/groups/`)
+    if(response.ok){
+        return response.json()
+    }
+}
+
+
+export const getSingleGroup = async(groupId) => {
+    const response = await csrfFetch(`/api/groups/${groupId}`)
+    if(response.ok){
+        return response.json()
+    }
+}
+
+//(U)
+export const editSingleGroup= async(group) => {
+    const response = await csrfFetch(`/api/group/${group.id}`,{
+        method: 'PUT',
+        headers:{'Content-Type' : 'application/json'},
+        body: JSON.stringify(group)
+    })
+    if(response.ok){
+        return response.json()
+    }
+}
+
+
+//(D)
+export const deleteSingleGroup = async(groupId)=>{
+    const response = await csrfFetch(`/api/group/${groupId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+    if (response.ok){
+      return response.json()
+    }
+}
 // export const addSingleReview = (review) => async(dispatch) =>{
 //     console.log(review)
 //     const response = await csrfFetch(`/api/business/${review.businessId}/${review.userId}/review/new`, {
