@@ -108,9 +108,9 @@ function HomePage(){
 
     const groupTitleDidChange = async (group) =>{
         if(isEditingGroup){
-            setEditingGroup({...editingGroup, title})
+            setEditingGroup({...editingGroup, group})
         } else {
-            setInputValue(title)
+            setInputValue(group.name)
         }
     }
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-// import './LoginForm.css'
+import './LoginForm.css'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function LoginForm() {
         />
       </div>
 
-      <div className='credentials'>
+      <div className='login-button'>
       <button type="submit">Log In</button>
       </div>
     </form>
