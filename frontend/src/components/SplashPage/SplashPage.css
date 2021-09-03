@@ -8,3 +8,18 @@
     color: #3498db
 }
 
+a {
+    margin-top: 56px;
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    color: #3498db;
+    text-align: center;
+    border: .5px solid #3498db;
+    background: none;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-family: 'montserrat';
+    cursor: pointer;
+}
