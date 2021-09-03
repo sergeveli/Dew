@@ -54,12 +54,13 @@ router.put('/:taskId',
             const inputTask = req.params.task
             taskId = req.params.taskId
             title = req.body.title
+            groupId = req.body.groupId
             description = req.body.description
             completed = req.body.completed
             reps = req.body.reps
             taskDate = req.body.reps
             const task = await Task.findByPk(taskId)
-            await task.update({title, description, completed, reps, taskDate})
+            await task.update({title, description, groupId, completed, reps, taskDate})
             return res.json('')                              
 }))
 
