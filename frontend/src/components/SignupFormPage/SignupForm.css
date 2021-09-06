@@ -75,3 +75,11 @@ label {
     align-items: center;
     margin: auto;
 }
+
+.errors li {
+    display: flex;
+    color: red;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}

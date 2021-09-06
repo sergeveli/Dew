@@ -36,11 +36,13 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div className='innerForm'></div>
+      <div className='loginerrors'>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      </div>
 
       <div className='credentials'>
       <label>
