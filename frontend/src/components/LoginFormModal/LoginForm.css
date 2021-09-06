@@ -63,3 +63,18 @@ form .innerForm .credentials {
 .login-button label {
     text-align: center;
 }
+
+.loginerrors {
+    color: #20C20E;
+    margin: auto;
+    justify-content: center;
+}
+
+
+.loginerrors ul {
+    color: red;
+    margin: auto;
+    justify-content: center;
+    list-style-type: none;
+}
+
