@@ -1,8 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: birder-box;
-    font-family: 'montserrat'
+    box-sizing: border-box;
+    font-family: 'montserrat';
+    background-color: black;
 }
 
 input {
@@ -10,7 +11,7 @@ input {
     background: none;
     border: none;
     outline: none;
-    color: #3498db;
+    color: #20C20E;
     text-align: center;
 }
 
@@ -19,9 +20,9 @@ button {
     background: none;
     border: none;
     outline: none;
-    color: #3498db;
+    color: #20C20E;
     text-align: center;
-    border: .5px solid #3498db;
+    border: .5px solid #20C20E;
     background: none;
     padding: 4px 8px;
     font-size: 9px;
@@ -53,7 +54,7 @@ form .innerForm .credentials {
 
 .credentials label {
     display: block;
-    color: #3498db;
+    color: #20C20E;
     font-size: 13px;
     margin-bottom: 5px;
     transition: 0.4s;

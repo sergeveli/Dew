@@ -178,7 +178,7 @@ function HomePage(props){
                 )}
             </div>
 
-
+            
             {getTaskList().map((task) => (  ///add classnames for styling
                 <div key={task.id}>
                     {task.title}

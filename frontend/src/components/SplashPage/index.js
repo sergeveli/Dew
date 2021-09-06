@@ -9,7 +9,7 @@ function SplashPage(){
         <p><a href="https://github.com/sergeveli"> GitHub</a> &nbsp;
         <a href="https://www.linkedin.com/in/sergekassangana/">LinkedIn</a>
         </p>
-        </div>
+    </div>
 
 }
 
