@@ -12,3 +12,10 @@
     cursor: pointer;
     margin: 10px;
 }
+
+.profile-dropdown li {
+    display: block;
+    color: #20C20E;
+    margin: auto;
+    justify-content: center;
+}
