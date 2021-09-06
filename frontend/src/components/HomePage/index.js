@@ -155,7 +155,7 @@ function HomePage(props){
             <button className='btn' onClick={newGroupButton}> New Group </button>
 
             <div className='header'>
-                {!!selectedGroup() && <h1 style={{display: 'inline-block'}}>{selectedGroup().name}</h1>}
+                {!!selectedGroup() && <h1 style={{display: 'block'}}>{selectedGroup().name}</h1>}
 
                 <select 
                     onChange={(e)=>didSelectGroupId(parseInt(e.target.value))} 
@@ -178,7 +178,7 @@ function HomePage(props){
                 )}
             </div>
 
-
+            
             {getTaskList().map((task) => (  ///add classnames for styling
                 <div key={task.id}>
                     {task.title}
@@ -190,8 +190,9 @@ function HomePage(props){
             {showForm &&
             <Modal onClose={() => setShowForm(false)}>
             <form onSubmit={formSubmit}>
+        <div className='task-dropdown'>
             <select onChange={(e)=> groupDidChange(e.target.value)} name="groups">
-                <option value=''>No Group</option>
+                <option value=''>All</option>
                 {groupList.map((group)=>(<option key={ group.id } selected={isEditing && editingTask.groupId === group.id} value={group.id}>{group.name}</option>))}
             </select>
                 <input
@@ -201,6 +202,7 @@ function HomePage(props){
                 required
                 />
                 <button className='btn' type='submit'>Save</button>
+        </div>
             </form>
             </Modal>}
 

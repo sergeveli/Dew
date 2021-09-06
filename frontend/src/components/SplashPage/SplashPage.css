@@ -1,11 +1,16 @@
-* {
+body {
     background-color: black;
 }
 
 .splash-container{
     text-align: center;
     margin-top: 360px;
-    color: #3498db
+    color:#20C20E;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 a {
@@ -14,9 +19,9 @@ a {
     background: none;
     border: none;
     outline: none;
-    color: #3498db;
+    color: #20C20E;
     text-align: center;
-    border: .5px solid #3498db;
+    border: .5px solid #20C20E;
     background: none;
     padding: 4px 8px;
     font-size: 9px;
