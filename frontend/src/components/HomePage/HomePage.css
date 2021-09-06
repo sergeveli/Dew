@@ -34,6 +34,11 @@ h1 {
     font-family: 'montserrat';
 }
 
-.header{
+.header select {
     background: none;
+    color: #20C20E;
+}
+
+.task-dropdown select {
+    color: #20C20E
 }
