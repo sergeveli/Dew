@@ -18,11 +18,11 @@ input {
 button {
     appearance: none;
     background: none;
-    border: none;
     outline: none;
     color: #20C20E;
     text-align: center;
     border: .5px solid #20C20E;
+    box-shadow: 2px 1px 1px #20C20E;
     background: none;
     padding: 4px 8px;
     font-size: 9px;
@@ -62,6 +62,7 @@ form .innerForm .credentials {
 
 .login-button label {
     text-align: center;
+    box-shadow: 2px 1px 1px #20C20E;
 }
 
 .loginerrors {
