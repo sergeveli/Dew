@@ -148,7 +148,7 @@ function HomePage(props){
 
     return (
         <div className='list'>
-            <h1>What's Next?</h1>
+            <h1>WHAT'S NEXT?</h1>
 
             <button className='btn' onClick={handleNewButton}> New Task </button>
 
