@@ -148,14 +148,14 @@ function HomePage(props){
 
     return (
         <div className='list'>
-            <h1>'What's Next?'</h1>
+            <h1>What's Next?</h1>
 
             <button className='btn' onClick={handleNewButton}> New Task </button>
 
             <button className='btn' onClick={newGroupButton}> New Group </button>
 
             <div className='header'>
-                {!!selectedGroup() && <h1 style={{display: 'block'}}>{selectedGroup().name}</h1>}
+                {!!selectedGroup() && <h2 style={{display: 'block'}}>{selectedGroup().name}</h2>}
 
                 <select 
                     onChange={(e)=>didSelectGroupId(parseInt(e.target.value))} 
@@ -172,8 +172,8 @@ function HomePage(props){
 
                 {!!selectedGroup() && (
                     <div>
-                        <button type='submit' onClick={()=>startGroupEdit(selectedGroupId)}>Edit</button>
-                        <button type='submit' onClick={()=>handleGroupDeleteButton(selectedGroupId)}>Delete</button>
+                        <button className='groupbuttons' type='submit' onClick={()=>startGroupEdit(selectedGroupId)}>Edit</button>
+                        <button className='groupbuttons' type='submit' onClick={()=>handleGroupDeleteButton(selectedGroupId)}>Delete</button>
                     </div>
                 )}
             </div>
@@ -195,6 +195,7 @@ function HomePage(props){
                 <option value=''>All</option>
                 {groupList.map((group)=>(<option key={ group.id } selected={isEditing && editingTask.groupId === group.id} value={group.id}>{group.name}</option>))}
             </select>
+            <div className='inputbox'>
                 <input
                 type='text'
                 value={isEditing ? editingTask.title : inputValue}
@@ -202,6 +203,7 @@ function HomePage(props){
                 required
                 />
                 <button className='btn' type='submit'>Save</button>
+            </div>
         </div>
             </form>
             </Modal>}
@@ -209,13 +211,16 @@ function HomePage(props){
             {showGroupForm &&
             <Modal onClose={() => setShowGroupForm(false)}>
             <form onSubmit={groupFormSubmit}>
+            <div className='inputbox'>
                 <input
                 type='text'
                 value={isEditingGroup ? editingGroup.name : groupInputValue}
                 onChange={(e)=> groupTitleDidChange(e.target.value)}
                 required
                 />
+            
                 <button className='btn' type='submit'>Save</button>
+            </div>
             </form>
             </Modal>}
         </div>

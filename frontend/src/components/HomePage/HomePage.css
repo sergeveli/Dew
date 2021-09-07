@@ -3,18 +3,20 @@
     background-color: black;
     text-align: center;
     margin: auto;
-    margin-top: 360px;
+    margin-top: 36px;
     color: #20C20E;
     max-width: 25%;
-    box-shadow: 3px 3px #20C20E, -1em 0 .4em #20C20E;
+    box-shadow: 1px 1px #20C20E, 0em 0 1.3em #20C20E;
 }
 
 
 .btn{
-    border: 0px solid #fff;
+    display: inline-block;
+    border: 1px solid #20C20E;
+    box-shadow: 2px 1px 1px #20C20E;
     background: none;
-    padding: 4px 58x;
-    font-size: 17.5px;
+    padding: 4px;
+    font-size: 13px;
     font-family: 'montserrat';
     cursor: pointer;
     margin: 10px;
@@ -22,16 +24,13 @@
     color: #20C20E;
 }
 
-.btn2{
-    color: #3498db;
-}
-
-.btn:hover{
+.btn:hover {
     color: red;
 }
 
-h1 {
+h2 {
     font-family: 'montserrat';
+    margin-bottom: 5px;
 }
 
 .header select {
@@ -41,4 +40,14 @@ h1 {
 
 .task-dropdown select {
     color: #20C20E
+}
+
+.inputbox input {
+    border: 1px solid #20C20E;
+}
+.groupbuttons{
+    transition: 1.5s;
+}
+.groupbuttons:hover {
+    color: red;
 }
