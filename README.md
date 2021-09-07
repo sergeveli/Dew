@@ -73,7 +73,8 @@ Next, run the following command to seed the data we just migrated in previous st
 
 To run this app on our local machine, we want to open two (2) terminals.
 
-In one terminal, we want to navigate to the backend directory. In the other terminal, we want to navigate to the frontend directory.
+In one terminal, we want to navigate to the backend directory. 
+In the other terminal, we want to navigate to the frontend directory.
 
 Once both terminals are open and we are in the correct directories, we want to run the following command in each:
 ```bash
@@ -81,6 +82,7 @@ Once both terminals are open and we are in the correct directories, we want to r
 ```
 
 Now, we should be able to reach the app by navigating to http://localhost:3000/
+
 ## Feedback
 
 If you have any feedback, please reach out to me at skassangana90@gmail.com
