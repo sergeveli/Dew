@@ -28,7 +28,7 @@ The point of Dew isn't to reinvent the wheel. It is simply a micro task manager 
   
 ## What's Next?
 
-This was my first solo full stack project and I must say, it was quite the adventure. I learned many things, such as the importance of keeping code organized and making sure to sweat over the details. The future of Dew includes layout/styling optimization as was code being refactored. As far as features go, a pomodoro timer is somethign that may be part of the next steps. 
+This was my first solo full stack project and I must say, it was quite the adventure. I learned many things, such as the importance of keeping code organized and making sure to sweat over the details. The future of Dew includes layout/styling optimization as well as code being refactored. As far as features go, a pomodoro timer is something that may be part of the next steps. 
 
   
 ## Run Locally
