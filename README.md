@@ -12,11 +12,11 @@ The point of Dew isn't to reinvent the wheel. It is simply a micro task manager 
   
 ## Screenshots
 
-![App Screenshot](https://github.com/sergeveli/Dew/blob/main/Screen%20Shot%202021-09-06%20at%209.46.18%20PM.png)
-![App Screenshot](https://github.com/sergeveli/Dew/blob/main/Screen%20Shot%202021-09-06%20at%2010.28.14%20PM.png)
-![App Screenshot](https://github.com/sergeveli/Dew/blob/main/Screen%20Shot%202021-09-06%20at%2010.28.00%20PM.png)
-![App Screenshot](https://github.com/sergeveli/Dew/blob/main/Screen%20Shot%202021-09-06%20at%2010.27.47%20PM.png)
-![App Screenshot](https://github.com/sergeveli/Dew/blob/main/Screen%20Shot%202021-09-06%20at%2010.27.24%20PM.png)
+![App Screenshot](https://github.com/sergeveli/Dew/blob/main/splashscreenshot.png)
+![App Screenshot](https://github.com/sergeveli/Dew/blob/main/allscreenshot.png)
+![App Screenshot](https://github.com/sergeveli/Dew/blob/main/choresscreenshot.png)
+![App Screenshot](https://github.com/sergeveli/Dew/blob/main/errandsscreenshot.png)
+![App Screenshot](https://github.com/sergeveli/Dew/blob/main/miscscreenshot.png)
 
   
 ## Tech Stack
