@@ -9,7 +9,7 @@
 input {
     appearance: none;
     background: none;
-    border: none;
+    border: 1px solid #20C20E;
     outline: none;
     color: #20C20E;
     text-align: center;
