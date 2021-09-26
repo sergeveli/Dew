@@ -68,7 +68,7 @@ function HomePage(props){
         if(isEditing){
             await editSingleTask(editingTask)
         } else {
-            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue})
+            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue || null})
             setInputValue(null)
             setGroupInputValue(null)
         }
@@ -196,8 +196,9 @@ function HomePage(props){
                 {groupList.map((group)=>(<option key={ group.id } selected={isEditing && editingTask.groupId === group.id} value={group.id}>{group.name}</option>))}
             </select>
             <div className='inputbox'>
-                <input
+                <textarea
                 type='text'
+                maxLength='130'
                 value={isEditing ? editingTask.title : inputValue}
                 onChange={(e)=> titleDidChange(e.target.value)}
                 required

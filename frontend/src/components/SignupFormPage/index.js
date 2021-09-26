@@ -48,6 +48,7 @@ function SignupFormPage() {
         Username:
         <input
           type="text"
+          maxLength='13'
           value={userName}
           onChange={(e) => setUsername(e.target.value)}
           required
