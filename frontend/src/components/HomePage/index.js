@@ -68,7 +68,7 @@ function HomePage(props){
         if(isEditing){
             await editSingleTask(editingTask)
         } else {
-            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue})
+            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue || null})
             setInputValue(null)
             setGroupInputValue(null)
         }
