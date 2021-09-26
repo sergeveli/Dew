@@ -42,8 +42,9 @@ h2 {
     color: #20C20E
 }
 
-.inputbox input {
+.inputbox textarea {
     border: 1px solid #20C20E;
+    color: #20C20E;
 }
 .groupbuttons{
     transition: 1.5s;

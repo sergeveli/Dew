@@ -196,8 +196,9 @@ function HomePage(props){
                 {groupList.map((group)=>(<option key={ group.id } selected={isEditing && editingTask.groupId === group.id} value={group.id}>{group.name}</option>))}
             </select>
             <div className='inputbox'>
-                <input
+                <textarea
                 type='text'
+                maxLength='130'
                 value={isEditing ? editingTask.title : inputValue}
                 onChange={(e)=> titleDidChange(e.target.value)}
                 required
