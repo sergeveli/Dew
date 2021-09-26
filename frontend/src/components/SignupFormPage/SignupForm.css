@@ -55,30 +55,31 @@ form .innerForm .credentials {
 
 label {
     color: #20C20E;
-
+    margin-top: 15%;
 }
 
 .signupform {
    display: block;
    margin-left: 50%;
+   margin-right: -50%;
+   margin-top: 1%;
    /* padding: 25%; */
-   margin-top: 25%;
 }
 
 .signupform label {
     display:block;
-    justify-content: center;
-    align-content: center;
-    background-color: black;
-    justify-self: center;
-    align-items: center;
+    /* justify-content: center;
+    align-content: center; */
+    background: none;
+    /* justify-self: center;
+    align-items: center; */
     margin: auto;
 }
 
 .errors li {
-    display: flex;
     color: red;
-    margin: auto;
+    position: inherit;
     justify-content: center;
     align-items: center;
+    list-style-type: none;
 }

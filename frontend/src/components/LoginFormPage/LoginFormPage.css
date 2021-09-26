@@ -63,6 +63,9 @@ form .innerForm .credentials {
     text-align: center;
 }
 
-ul {
+form ul {
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
     color: red;
 }
