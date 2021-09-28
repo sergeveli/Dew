@@ -1,11 +1,12 @@
 import csrfFetch from "./csrf"
 
+
 //(C)
-export const addTask = async(task) => {
+export const addTask = async(task, userId) => {
         const response = await csrfFetch(`api/task/new`,{
             method: 'POST',
             headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({...task, userId: 1})})
+            body: JSON.stringify({...task, userId: userId})})
         if(response.ok){
             return response.json()
         }
@@ -55,11 +56,11 @@ export const deleteSingleTask = async(taskId)=>{
 
 ////////////
 //(C)
-export const addGroup = async(group) => {
+export const addGroup = async(group, userId) => {
         const response = await csrfFetch(`api/group/new`,{
             method: 'POST',
             headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({...group, userId: 1})}) //
+            body: JSON.stringify({...group, userId: userId})}) //
         if(response.ok){
             return response.json()
         }
