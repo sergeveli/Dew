@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useSelector } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
 import { Modal } from '../../context/Modal';
 
-function HomePage(props){
-    const user = props.user
+function HomePage(){
+    const user = useSelector(state => state.session.user)
     const [showForm, setShowForm] = useState(false)
     const [inputValue, setInputValue] = useState('')
     const [taskList, setTaskList] = useState([])
@@ -68,7 +69,7 @@ function HomePage(props){
         if(isEditing){
             await editSingleTask(editingTask)
         } else {
-            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue || null})
+            await addTask({title:inputValue, description:inputValue, completed:false, groupId:groupInputValue || null}, user.id)
             setInputValue(null)
             setGroupInputValue(null)
         }
@@ -111,7 +112,7 @@ function HomePage(props){
         if(isEditingGroup){
             await editSingleGroup(editingGroup)
         } else {
-            await addGroup({name:groupInputValue})
+            await addGroup({name:groupInputValue}, user.id)
         }
         await loadGroups()
     }
