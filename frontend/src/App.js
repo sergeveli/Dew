@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import SplashPage from "./components/SplashPage";
+import Clock from "./components/clock";
 
 
 function App() {
@@ -16,6 +17,11 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+const [timerDays, setTimerDays] = useState();
+const [timerHours, setTimerHours] = useState();
+const [timerMinutes, setTimerMinutes] = useState();
+const [timerSeconds, setTimerSeconds] = useState();
 
   return (
     <>
@@ -28,9 +34,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
           <PrivateRoute path='/home'>
+            <Clock timerDays={timerDays} timerHours={timerHours} 
+                  timerMinutes={timerMinutes} timerSeconds={timerSeconds}/>
             <HomePage user={user}/>
           </PrivateRoute>
+
           <Route path='/'>
             {user ?
             <Redirect to={{pathname: "/home"}}/> :
