@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
 import { Modal } from '../../context/Modal';
+import TaskComponent from '../Task';
 
 function HomePage(){
     const user = useSelector(state => state.session.user)
@@ -181,11 +182,9 @@ function HomePage(){
 
             
             {getTaskList().map((task) => (  ///add classnames for styling
-                <div key={task.id}>
-                    {task.title}
-                    <button type='submit' className='btn' onClick={()=>handleDeleteButton(task.id)}>Delete</button>
-                    <button type='submit' className='btn' onClick={()=>startEdit(task)}>Edit</button>
-                </div>
+            <TaskComponent task={task} 
+            onEdit={()=>startEdit(task)} 
+            onDelete={()=>handleDeleteButton(task.id)}></TaskComponent>
             ))}
 
             {showForm &&
@@ -209,6 +208,7 @@ function HomePage(){
         </div>
             </form>
             </Modal>}
+
 
             {showGroupForm &&
             <Modal onClose={() => setShowGroupForm(false)}>
