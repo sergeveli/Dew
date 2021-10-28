@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd'
 import {useSelector} from 'react-redux';
 import { addTask, deleteSingleTask, editSingleTask, getAllTasks, addGroup, getAllGroups, editSingleGroup, deleteSingleGroup} from '../../api';
 import "./HomePage.css"
@@ -180,12 +181,25 @@ function HomePage(){
                 )}
             </div>
 
-            
-            {getTaskList().map((task) => (  ///add classnames for styling
-            <TaskComponent task={task} 
-            onEdit={()=>startEdit(task)} 
-            onDelete={()=>handleDeleteButton(task.id)}></TaskComponent>
-            ))}
+            <DragDropContext>
+                <Droppable droppableId='tasks'>
+                    {(provided)=>(
+                        <div className='tasks' {...provided.droppableProps} ref={provided.innerRef}> 
+                            {getTaskList().map((task, i) => (  ///add classnames for styling
+                                <Draggable draggableId={task.id} key={task.id} index={i}>
+                                    {(provided)=>(<TaskComponent task={task} 
+                                    onEdit={()=>startEdit(task)} 
+                                    onDelete={()=>handleDeleteButton(task.id)}
+                                    {...provided.draggableProps} ref={provided.innerRef}
+                                    {...provided.dragHandleProps}
+                                    />
+                                    )}
+                                </Draggable>
+                            ))}
+                            </div>)
+                    }
+                </Droppable>
+            </DragDropContext>
 
             {showForm &&
             <Modal onClose={() => setShowForm(false)}>
