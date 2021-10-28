@@ -10,7 +10,7 @@ import SplashPage from "./components/SplashPage";
 import Clock from "./components/clock";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import TaskComponent from "./components/Task";
+
 
 
 function App() {

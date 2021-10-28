@@ -11,10 +11,10 @@ const { route } = require('./session.js');
 
 router.use('/session', sessionRouter);
 
-router.use('/task', taskRouter)
+router.use('/task', taskRouter);
 
 router.use('/users', usersRouter);
 
-router.use('/group', groupRouter)
+router.use('/group', groupRouter);
 
 module.exports = router;
