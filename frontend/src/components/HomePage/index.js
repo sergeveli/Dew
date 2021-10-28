@@ -22,6 +22,7 @@ function HomePage(){
     const [groupInputValue, setGroupInputValue] = useState('')
     const [selectedGroupId, setSelectedGroupId] = useState(null)
 
+
     
     const getTaskList = () => {
         if(selectedGroupId){
@@ -149,6 +150,27 @@ function HomePage(){
     }
 
 
+    const grid = 8
+
+    
+    const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+        userSelect: "none",
+        padding: grid * 2,
+        margin: `0 0 ${grid}px 0`,
+
+    // change background colour if dragging
+        background: isDragging ? "lightgreen" : "grey",
+
+    // styles we need to apply on draggables
+        ...draggableStyle
+    });
+
+    const getListStyle = isDraggingOver => ({
+        background: isDraggingOver ? "lightblue" : "lightgrey", padding: grid, width: 250
+    });
+
+
     return (
         <div className='list'>
             <h1>WHAT'S NEXT?</h1>
@@ -181,21 +203,25 @@ function HomePage(){
                 )}
             </div>
 
-            <DragDropContext>
+            <DragDropContext onDragEnd={()=> console.log('DragNDrop')}>
                 <Droppable droppableId='tasks'>
-                    {(provided)=>(
-                        <div className='tasks' {...provided.droppableProps} ref={provided.innerRef}> 
+                    {(provided, snapshot)=>(
+                        <div className='tasks' 
+                            {...provided.droppableProps} 
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}> 
+                            
                             {getTaskList().map((task, i) => (  ///add classnames for styling
-                                <Draggable draggableId={task.id} key={task.id} index={i}>
-                                    {(provided)=>(<TaskComponent task={task} 
+                                <Draggable draggableId={`draggable ${i}`} key={task.id} index={i}>
+                                    {(provided, snapshot)=>(
+                                    <TaskComponent provided={provided} snapshot={snapshot} task={task}
+                                    getItemStyle={getItemStyle} innerRef={provided.innerRef} 
                                     onEdit={()=>startEdit(task)} 
-                                    onDelete={()=>handleDeleteButton(task.id)}
-                                    {...provided.draggableProps} ref={provided.innerRef}
-                                    {...provided.dragHandleProps}
-                                    />
+                                    onDelete={()=>handleDeleteButton(task.id)}/>
                                     )}
                                 </Draggable>
                             ))}
+                            {provided.placeholder}
                             </div>)
                     }
                 </Droppable>
