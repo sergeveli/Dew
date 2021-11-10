@@ -7,6 +7,7 @@ import { Modal } from '../../context/Modal';
 import TaskComponent from '../Task';
 
 function HomePage(){
+    const [tasks, setTasks] = useState()
     const user = useSelector(state => state.session.user)
     const [showForm, setShowForm] = useState(false)
     const [inputValue, setInputValue] = useState('')
@@ -24,7 +25,7 @@ function HomePage(){
 
 
     
-    const getTaskList = () => {
+    const getTaskList = () => { ///for changing task groups ---> figure how to check to see if groupId is there x if so, autosets tasks to have that groupId and render the tasks from the task state
         if(selectedGroupId){
             return taskList.filter((task) => task.groupId === selectedGroupId)
         }
@@ -158,18 +159,53 @@ function HomePage(){
         userSelect: "none",
         padding: grid * 2,
         margin: `0 0 ${grid}px 0`,
-
+        border: '1px solid #20C20E',
+        display: 'flex',
+        flexDirection: 'column',
+        
     // change background colour if dragging
-        background: isDragging ? "lightgreen" : "grey",
+        // background: isDragging ? "lightgreen" : "grey",
 
     // styles we need to apply on draggables
         ...draggableStyle
     });
 
     const getListStyle = isDraggingOver => ({
-        background: isDraggingOver ? "lightblue" : "lightgrey", padding: grid, width: 250
+        background: isDraggingOver ? "lightblue" : "black", padding: grid, width: 250
     });
 
+    const onEnd = async (result) => {
+        const source = taskList[result.source.index]
+        const destination = taskList[result.destination.index]
+        const sourceId = source.id
+        const destinationId = destination.id
+        destination.id = sourceId
+        source.id = destinationId
+
+        await editSingleTask(destination)
+        await editSingleTask(source)
+
+        loadTasks()
+    }
+
+    useEffect(()=>{
+        getTaskList()
+
+        // setTaskList((prev)=>{
+        //     prev.sort(function (a, b) {
+        //     return a.id - b.id;
+        //     });
+        // })
+    }, [])
+
+    useEffect(() =>{
+        setTasks(taskList.filter((task) => task.groupId === selectedGroupId))
+        
+    }, [selectedGroupId])
+
+    if(!taskList){
+        return null
+    }
 
     return (
         <div className='list'>
@@ -189,7 +225,7 @@ function HomePage(){
                     {groupList.map((group)=>(
                     <option 
                     key = {group.id}
-                    selected={selectedGroupId === group.id} 
+                    value={selectedGroupId === group.id} ///
                     value={group.id}>{group.name}
                     </option>
                     ))}
@@ -203,7 +239,7 @@ function HomePage(){
                 )}
             </div>
 
-            <DragDropContext onDragEnd={()=> console.log('DragNDrop')}>
+            <DragDropContext onDragEnd={onEnd}>
                 <Droppable droppableId='tasks'>
                     {(provided, snapshot)=>(
                         <div className='tasks' 
@@ -211,8 +247,17 @@ function HomePage(){
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}> 
                             
-                            {getTaskList().map((task, i) => (  ///add classnames for styling
-                                <Draggable draggableId={`draggable ${i}`} key={task.id} index={i}>
+                            {taskList ? taskList.map((task, i) => (  ///add classnames for styling
+                                <Draggable draggableId={`${task.id}`} key={task.id} index={i}>
+                                    {(provided, snapshot)=>(
+                                    <TaskComponent provided={provided} snapshot={snapshot} task={task}
+                                    getItemStyle={getItemStyle} innerRef={provided.innerRef} 
+                                    onEdit={()=>startEdit(task)} 
+                                    onDelete={()=>handleDeleteButton(task.id)}/>
+                                    )}
+                                </Draggable>
+                            )):tasks.map((task, i) => (  ///add classnames for styling
+                                <Draggable draggableId={`${task.id}`} key={task.id} index={i}>
                                     {(provided, snapshot)=>(
                                     <TaskComponent provided={provided} snapshot={snapshot} task={task}
                                     getItemStyle={getItemStyle} innerRef={provided.innerRef} 
