@@ -28,3 +28,8 @@ a {
     font-family: 'montserrat';
     cursor: pointer;
 }
+
+.description-box {
+    width: 360px;
+    margin: auto;
+}

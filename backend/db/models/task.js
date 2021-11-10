@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     groupId: DataTypes.INTEGER,
     completed: DataTypes.BOOLEAN,
     reps: DataTypes.INTEGER,
-    taskDate: DataTypes.DATE
+    taskDate: DataTypes.DATE,
   }, {});
   Task.associate = function(models) {
     Task.belongsTo(models.User, {foreignKey: 'userId'})

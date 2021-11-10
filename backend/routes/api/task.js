@@ -42,7 +42,8 @@ router.get('/:id/tasks',
             const tasks = await Task.findAll(
                 {
                     where: {userId},
-                    model: Timer
+                    model: Timer, 
+                    order: [['id', 'ASC']]
               });
             return await res.json(tasks);
     })
