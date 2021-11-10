@@ -52,3 +52,7 @@ h2 {
 .groupbuttons:hover {
     color: red;
 }
+
+.tasks{
+    margin: auto;
+}
