@@ -32,7 +32,9 @@ button {
 
 
 
-
+form{
+    display:block;
+}
 
 form .innerForm .credentials {
     display: block;
@@ -54,15 +56,21 @@ form .innerForm .credentials {
 }
 
 label {
+    display: block;
     color: #20C20E;
-    margin-top: 15%;
+    font-size: 13px;
+    margin-bottom: 0 px;
+    align-content: left;
 }
 
 .signupform {
-   display: block;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
    margin-left: 50%;
    margin-right: -50%;
    margin-top: 1%;
+   max-width: fit-content;
    /* padding: 25%; */
 }
 
