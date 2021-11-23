@@ -25,7 +25,7 @@ function HomePage(){
 
 
     
-    const getTaskList = () => { ///for changing task groups ---> figure how to check to see if groupId is there x if so, autosets tasks to have that groupId and render the tasks from the task state
+    const getTaskList = () => {///for changing task groups ---> figure how to check to see if groupId is there x if so, autosets tasks to have that groupId and render the tasks from the task state///
         if(selectedGroupId){
             return taskList.filter((task) => task.groupId === selectedGroupId)
         }
